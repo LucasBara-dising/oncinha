@@ -35,30 +35,17 @@ function Home():  React.JSX.Element {
               imgBtn ={require('../imagens/iconColecao.png')}
               />
 
+            <BtnIcon
+              onPress={handleAddPress}
+              textbtn="Loja"
+              imgBtn ={require('../imagens/iconLoja.png')}
+              />
 
-            <Pressable
-                style={styles.buttonContainer} 
-                onPress={handleAddPress}>
-                  <Image 
-                    source={require('../imagens/iconColecao.png')} />
-                  <Text style={styles.buttonText}> Coleção </Text>
-            </Pressable>
-
-            <Pressable
-                style={styles.buttonContainer} 
-                onPress={handleAddPress}>
-                  <Image 
-                    source={require('../imagens/iconLoja.png')} />
-                  <Text style={styles.buttonText}> Loja </Text>
-            </Pressable>
-
-            <Pressable
-                style={styles.buttonContainer} 
-                onPress={onButtonClick}>
-                  <Image 
-                    source={require('../imagens/iconRoleta.png')} />
-                  <Text style={styles.buttonText}> Jogar </Text>
-            </Pressable>
+            <BtnIcon
+              onPress={handleAddPress}
+              textbtn="Jogo"
+              imgBtn ={require('../imagens/iconRoleta.png')}
+              />
 
         </View>
 
@@ -80,6 +67,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#025827',
         height: '100%',
         position: 'absolute',
+        color: "#000",
         zIndex: -1,
         opacity: 0.8,
     },
@@ -95,11 +83,11 @@ const styles = StyleSheet.create({
     moedas: {
       fontSize: 20,
       width:'80%',
-      height: 40,
       color: "#fff",
       opacity: 0.8,
       backgroundColor: '#ffcb00',
       borderRadius:25,
+      padding:"1%",
       marginBottom:'10%',
       marginTop: '10%',
       textAlign: 'center'

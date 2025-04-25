@@ -37,9 +37,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginBottom: "10%",
     width:"90%",
-    backgroundColor: '#025827',
+    backgroundColor: '#143020',
+    opacity: 0.9,
     borderRadius: 20,
     borderStyle: 'solid',
+    borderWidth: 1,
     borderColor: "#FFCB00"
   },
 

@@ -1,10 +1,17 @@
 import React, {useState } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, Pressable } from 'react-native';
 import BoxCartas from '../comp/BoxCartas'
-import ItensLoja from '../types/itensLoja'
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
 
+// Definindo o tipo das props para a navegação
+type ColecaoScreenNavigationProp = StackNavigationProp<RootStackParamList, 'LojaScreen'>;
 
-const LojaScreen = () => {
+type Props = {
+  navigation: ColecaoScreenNavigationProp;
+};
+
+const LojaScreen: React.FC<Props> = ({navigation}) =>{
 
     const itensCards = [
         { id: '1', title: "Macaco Mago", preco: 100, img: require('../imagens/card_macaco.png') },
@@ -21,6 +28,14 @@ const LojaScreen = () => {
     return ( 
         <ScrollView >
             <View style={styles.container}>
+                <View style={styles.header}>
+                    <Pressable
+                        onPressIn={() => navigation.navigate('HomeScreen')}>
+                        <Image 
+                            source={require('../imagens/iconColecao.png')} />
+                    </Pressable>
+              </View>
+
                 <Image 
                     style={styles.bg} 
                     source={require('../imagens/bg-loja.png')} />
@@ -46,6 +61,14 @@ const styles = StyleSheet.create({
         flex: 1, 
         alignItems: 'center' 
     },
+
+    header:{
+        width:"100%",
+        alignItems: 'flex-start',
+        margin: 20,
+        paddingHorizontal: 10
+      },
+    
   
     bg:{
           backgroundColor:'#025827',
@@ -57,14 +80,14 @@ const styles = StyleSheet.create({
 
       moedas: {
         fontSize: 18,
-        width:'60%',
+        width:'50%',
         height: 30,
         color: "#fff",
         opacity: 0.8,
         backgroundColor: '#ffcb00',
         borderRadius:10,
         marginBottom:'10%',
-        marginTop: '15%',
+        marginTop: '-15%',
         textAlign: 'center'
       },
   

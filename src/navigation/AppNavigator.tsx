@@ -1,27 +1,24 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from '../screen/home';
+import ColecaoScreen from '../screen/colecao';
 
-import LojaScreen from '../screen/loja';
-import CartasEspeciaisScreen from '../comp/BoxCartas';
-import AvataresScreen from '../comp/AvataresScreen';
-import Home from '../screen/home'
+// Definindo o tipo das rotas disponíveis
+export type RootStackParamList = {
+  Home: undefined;
+  Colecao: undefined;
+};
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
-const AppNavigator = ()=>{
-    return (
-        <NavigationContainer>
-
-            <Stack.Navigator initialRouteName = "Home">
-                <Stack.Screen name= "Home" component = {Home}/>;
-                <Stack.Screen name= "LojaScreen" component = {LojaScreen} options={{title: "Cacique Bom preço"}}/>;
-                {/* <Stack.Screen name="Cartas Especiais" component={CartasEspeciaisScreen} />;
-                <Stack.Screen name='Avatares' component={AvataresScreen}/>; */}
-            </Stack.Navigator>
-
-        </NavigationContainer>
-    )
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Colecao" component={ColecaoScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-
-export default AppNavigator;

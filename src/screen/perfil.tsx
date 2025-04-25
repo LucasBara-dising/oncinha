@@ -5,7 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
 
 // Definindo o tipo das props para a navegação
-type ColecaoScreenNavigationProp = StackNavigationProp<RootStackParamList, 'ColecaoScreen'>;
+type ColecaoScreenNavigationProp = StackNavigationProp<RootStackParamList, 'PerfilScreen'>;
 
 type Props = {
   navigation: ColecaoScreenNavigationProp;
@@ -28,28 +28,38 @@ const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
             <View style={styles.container}>
 
               <View style={styles.header}>
+              <Pressable
+                  onPressIn={() => navigation.navigate('HomeScreen')}>
+                  <Image 
+                    source={require('../imagens/iconLoja.png')} />
+                </Pressable>
+
                 <Pressable
                   onPressIn={() => navigation.navigate('HomeScreen')}>
                   <Image 
-                    source={require('../imagens/iconColecao.png')} />
+                    source={require('../imagens/iconLoja.png')} />
                 </Pressable>
               </View>
+
+              <Pressable
+                              onPressIn={() => navigation.navigate('PerfilScreen')}>
+                              <Image 
+                                source={require('../imagens/avatar_teste.png')} />
+                         </Pressable>
                
 
                 <Image 
                     style={styles.bg} 
-                    source={require('../imagens/bg-loja.png')} />
+                    source={require('../imagens/bg-home.png')} />
 
                 <Text style={styles.moedas}> R$: 871.20</Text>
-
-                <Text style={styles.title}>COLEÇÕES</Text>
                 
                 <BoxCartasColecao
-                    textTitle="Natureza"
+                    textTitle="Deck"
                     itensLoja={colecaoNatureza}/>
 
                 <BoxCartasColecao
-                    textTitle="Animais"
+                    textTitle="Pacotes"
                     itensLoja={colecaoNatureza}/>
 
             </View>
@@ -66,18 +76,20 @@ const styles = StyleSheet.create({
 
     header:{
       width:"100%",
-      alignItems: 'flex-start',
+      flexDirection: 'row',
+      alignContent:"space-between",
       margin: 20,
       paddingHorizontal: 10
     },
   
     bg:{
-          backgroundColor:'#025827',
-          height: '100%',
-          position: 'absolute',
-          zIndex: -1,
-          opacity: 0.8,
-      },
+      backgroundColor:'#025827',
+      height: '100%',
+      position: 'absolute',
+      color: "#000",
+      zIndex: -1,
+      opacity: 0.8,
+  },
 
       title: { 
         fontSize: 24,
@@ -91,14 +103,14 @@ const styles = StyleSheet.create({
 
       moedas: {
         fontSize: 18,
-        width:'50%',
+        width:'60%',
         height: 30,
         color: "#fff",
         opacity: 0.8,
         backgroundColor: '#ffcb00',
         borderRadius:10,
         marginBottom:'10%',
-        marginTop: '-15%',
+        marginTop: '5%',
         textAlign: 'center'
       },
   

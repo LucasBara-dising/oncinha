@@ -1,18 +1,25 @@
 import React, {useState } from 'react';
 import {Text, View, StyleSheet, Image, Pressable, Alert, Modal, TextInput} from 'react-native';
 import BtnIcon from '../comp/box'
-import { useNavigation } from '@react-navigation/native';
-import LojaScreen from '../screen/loja';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
+
+// Definindo o tipo das props para a navegação
+type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'HomeScreen'>;
+
+type Props = {
+  navigation: HomeScreenNavigationProp;
+};
 
 
-function Home():  React.JSX.Element {
+const HomeScreen: React.FC<Props> = ({navigation}) =>{
 
     const handleAddPress =() =>{
         console.log("e827728")
     }
 
     function onButtonClick() {
-      //navigation.navigate(LojaScreen);
+      navigation.navigate('ColecaoScreen')
       console.log("Abre loja")
     }
 
@@ -24,19 +31,23 @@ function Home():  React.JSX.Element {
                     source={require('../imagens/bg-home.png')} />
 
         <View style={styles.colCentral}>
-            <Image 
-                source={require('../imagens/avatar_teste.png')} />
+           <Pressable
+                onPressIn={() => navigation.navigate('PerfilScreen')}>
+                <Image 
+                  source={require('../imagens/avatar_teste.png')} />
+           </Pressable>
+            
 
             <Text style={styles.moedas}> R$: 8712</Text>
 
             <BtnIcon
-              onPress={handleAddPress}
+              onPress={() => navigation.navigate('ColecaoScreen')}
               textbtn="Coleção"
               imgBtn ={require('../imagens/iconColecao.png')}
               />
 
             <BtnIcon
-              onPress={handleAddPress}
+              onPress={() => navigation.navigate('LojaScreen')}
               textbtn="Loja"
               imgBtn ={require('../imagens/iconLoja.png')}
               />
@@ -113,4 +124,4 @@ const styles = StyleSheet.create({
     
   });
 
-export default Home;
+export default HomeScreen;

@@ -32,7 +32,7 @@ const LojaScreen: React.FC<Props> = ({navigation}) =>{
                     <Pressable
                         onPressIn={() => navigation.navigate('HomeScreen')}>
                         <Image 
-                            source={require('../imagens/iconColecao.png')} />
+                            source={require('../imagens/iconLoja.png')} />
                     </Pressable>
               </View>
 

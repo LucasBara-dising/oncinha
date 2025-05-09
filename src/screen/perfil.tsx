@@ -33,12 +33,7 @@ const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
                   <Image 
                     source={require('../imagens/iconLoja.png')} />
                 </Pressable>
-
-                <Pressable
-                  onPressIn={() => navigation.navigate('HomeScreen')}>
-                  <Image 
-                    source={require('../imagens/iconLoja.png')} />
-                </Pressable>
+                
               </View>
 
               <Pressable

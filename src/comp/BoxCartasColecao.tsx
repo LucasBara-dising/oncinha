@@ -2,14 +2,16 @@ import * as React from 'react';
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import ItensLoja from '../types/itensLoja'
 
-const cartas = [
-  { id: '1', title: "Macaco Mago", preco: 100, img: require('../imagens/card_macaco.png') },
-  { id: '2', title: "Macaco Mago", preco: 200, img: require('../imagens/card_macaco.png') },
-  { id: '3', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
-  { id: '4', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png') },
-  { id: '6', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
-  { id: '7', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png')}
-];
+// const cartas = [
+//   { id: '1', title: "Macaco Mago", preco: 100, img: require('../imagens/card_macaco.png') },
+//   { id: '2', title: "Macaco Mago", preco: 200, img: require('../imagens/card_macaco.png') },
+//   { id: '3', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
+//   { id: '4', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png') },
+//   { id: '6', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
+//   { id: '7', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png')}
+
+// ];
+
 
 export type BtnProps = {
   textTitle: string;
@@ -22,7 +24,7 @@ const BoxCartas: React.FC<BtnProps> = ({textTitle, itensLoja}: BtnProps) => (
     <View style={styles.grid}>
       {itensLoja.map((carta) => (
         <View key={carta.id} style={styles.card}>
-          <Image source={carta.img} style={styles.image} />
+          <Image source={carta.imagem} style={styles.image} />
         </View>
       ))}
     </View>

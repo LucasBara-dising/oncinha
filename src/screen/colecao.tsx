@@ -1,6 +1,8 @@
-import React, {useState } from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Pressable } from 'react-native';
 import BoxCartasColecao from '../comp/BoxCartasColecao'
+import ItensLoja from '../types/itensLoja'
+import axios from 'axios';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
 
@@ -13,14 +15,33 @@ type Props = {
 
 const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
 
-    const colecaoNatureza = [
-        { id: '1', title: "Macaco Mago", preco: 100, img: require('../imagens/card_macaco.png') },
-        { id: '2', title: "Macaco Mago", preco: 200, img: require('../imagens/card_macaco.png') },
-        { id: '3', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
-        { id: '4', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png') },
-        { id: '5', title: "Macaco Mago", preco: 200, img: require('../imagens/card_macaco.png') },
-        { id: '6', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') }
-      ];
+  const [itensColacao, setItens] = useState<ItensLoja[]>([])
+
+    // const colecaoNatureza = [
+    //     { id: '1', title: "Macaco Mago", preco: 100, img: require('../imagens/card_macaco.png') },
+    //     { id: '2', title: "Macaco Mago", preco: 200, img: require('../imagens/card_macaco.png') },
+    //     { id: '3', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
+    //     { id: '4', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png') },
+    //     { id: '5', title: "Macaco Mago", preco: 200, img: require('../imagens/card_macaco.png') },
+    //     { id: '6', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') }
+    //   ];
+
+    
+    async function BuscaColecao() {
+      try{
+        const response = await axios.get('https://oncinha.ok.etc.br/all_card.php')
+
+        setItens(response.data.itens)
+
+      }catch(error){
+        console.log("ERRO "+ error)
+      }
+      
+    }
+
+    useEffect(() => {
+      BuscaColecao()
+      }, [])
 
     return ( 
         <ScrollView >
@@ -31,7 +52,15 @@ const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
                 <Pressable
                   onPressIn={() => navigation.navigate('HomeScreen')}>
                   <Image 
-                    source={require('../imagens/iconColecao.png')} />
+                    source={require('../imagens/iconLoja.png')} />
+                </Pressable>
+              </View>
+
+              <View style={styles.header}>
+                <Pressable
+                  onPressIn={BuscaColecao}>
+                  <Image 
+                    source={require('../imagens/iconLoja.png')} />
                 </Pressable>
               </View>
                
@@ -46,11 +75,11 @@ const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
                 
                 <BoxCartasColecao
                     textTitle="Natureza"
-                    itensLoja={colecaoNatureza}/>
-
+                    itensLoja={itensColacao}/>
+ {/*
                 <BoxCartasColecao
                     textTitle="Animais"
-                    itensLoja={colecaoNatureza}/>
+                    itensLoja={colecaoNatureza}/> */}
 
             </View>
         </ScrollView>

@@ -1,6 +1,8 @@
-import React, {useState } from 'react';
+import React, {useState, useEffect } from 'react';
 import {Text, View, StyleSheet, Image, Pressable, Alert, Modal, TextInput} from 'react-native';
 import BtnIcon from '../comp/box'
+import User from '../types/User';
+import {BuscaUser} from '../api';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
 
@@ -14,15 +16,18 @@ type Props = {
 
 const HomeScreen: React.FC<Props> = ({navigation}) =>{
 
-    const handleAddPress =() =>{
-        console.log("e827728")
-    }
+  const [infosUser, setInfos_user] = useState<User>()
 
-    function onButtonClick() {
-      navigation.navigate('ColecaoScreen')
-      console.log("Abre loja")
-    }
+    useEffect(() => {
+      // declare the data fetching function
+      const fetchData = async () => {
+        setInfos_user(await BuscaUser())
+      }
 
+      // call the function
+      fetchData()
+        .catch(console.error);
+    }, [])
 
   return (
     <View style={styles.container}>
@@ -38,7 +43,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) =>{
            </Pressable>
             
 
-            <Text style={styles.moedas}> R$: 8712</Text>
+            <Text style={styles.moedas}> R$: {infosUser?.moedas}</Text>
 
             <BtnIcon
               onPress={() => navigation.navigate('ColecaoScreen')}
@@ -53,9 +58,15 @@ const HomeScreen: React.FC<Props> = ({navigation}) =>{
               />
 
             <BtnIcon
-              onPress={handleAddPress}
+              onPress={() => navigation.navigate('RoletaScreen')}
               textbtn="Jogo"
               imgBtn ={require('../imagens/iconRoleta.png')}
+              />
+
+          <BtnIcon
+              onPress={() => navigation.navigate('RoletaScreen')}
+              textbtn="Roleta"
+              imgBtn ={require('../imagens/icon_espiral.png')}
               />
 
         </View>
@@ -84,7 +95,7 @@ const styles = StyleSheet.create({
     },
 
     colCentral:{
-        marginTop: '35%',
+        marginTop: '20%',
         marginLeft: '20%',
         marginRight: '20%',
         alignItems: "center",

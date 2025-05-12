@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Pressable } from 'react-native';
 import BoxCartasColecao from '../comp/BoxCartasColecao'
 import ItensLoja from '../types/itensLoja'
+import User from '../types/User';
 import axios from 'axios';
+import {BuscaUser, BuscaColecao} from '../api';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
 
@@ -13,9 +15,11 @@ type Props = {
   navigation: ColecaoScreenNavigationProp;
 };
 
-const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
+const ColecaoScreen: React.FC<Props> = async ({navigation}) =>{
 
   const [itensColacao, setItens] = useState<ItensLoja[]>([])
+  const [infosUser, setInfos_user] = useState<User>()
+  
 
     // const colecaoNatureza = [
     //     { id: '1', title: "Macaco Mago", preco: 100, img: require('../imagens/card_macaco.png') },
@@ -26,22 +30,23 @@ const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
     //     { id: '6', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') }
     //   ];
 
-    
-    async function BuscaColecao() {
-      try{
-        const response = await axios.get('https://oncinha.ok.etc.br/all_card.php')
 
-        setItens(response.data.itens)
 
-      }catch(error){
-        console.log("ERRO "+ error)
-      }
-      
-    }
 
-    useEffect(() => {
-      BuscaColecao()
-      }, [])
+    // useEffect(() => {
+    //   // declare the data fetching function
+    //   const fetchData = async () => {
+    //     //setInfos_user(await BuscaUser())
+    //     setItens(await BuscaColecao())
+    //   }
+
+    //   // call the function
+    //   // fetchData()
+    //   //   .catch(console.error);
+    // }, [])
+
+    //console.log(infosUser?.moedas)
+
 
     return ( 
         <ScrollView >
@@ -69,7 +74,7 @@ const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
                     style={styles.bg} 
                     source={require('../imagens/bg-loja.png')} />
 
-                <Text style={styles.moedas}> R$: 871.20</Text>
+                {/* <Text style={styles.moedas}> R$: {infosUser?.moedas}</Text> */}
 
                 <Text style={styles.title}>COLEÇÕES</Text>
                 

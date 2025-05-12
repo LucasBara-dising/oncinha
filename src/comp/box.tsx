@@ -20,6 +20,7 @@ const BtnIcon: React.FC<BtnProps> = ({onPress, textbtn, imgBtn}: BtnProps) => (
         style={styles.buttonContainer} 
         onPressIn={onPress}>
         <Image 
+        style={styles.img} 
         source={imgBtn} />
         <Text style={styles.buttonText}> {textbtn} </Text>
     </Pressable>
@@ -30,6 +31,11 @@ const styles = StyleSheet.create({
     buttonContainer: {
         alignItems: 'center',
         marginTop: 20
+      },
+
+      img: {
+        width: 80,
+        height: 80,
       },
 
       buttonText: {

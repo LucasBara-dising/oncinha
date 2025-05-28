@@ -42,13 +42,13 @@ const LojaScreen: React.FC<Props> = ({navigation}) =>{
 
                 <Text style={styles.moedas}> R$: 871.20</Text>
                 
-                <BoxCartas
+                {/* <BoxCartas
                     textTitle="Moedas"
                     itensLoja={itensMoeda}/>
 
                 <BoxCartas
                     textTitle="Cartas"
-                    itensLoja={itensCards}/>
+                    itensLoja={itensCards}/> */}
 
             </View>
         </ScrollView>

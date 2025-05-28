@@ -53,9 +53,6 @@ const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
                     textTitle="Deck"
                     itensLoja={colecaoNatureza}/>
 
-                <BoxCartasColecao
-                    textTitle="Pacotes"
-                    itensLoja={colecaoNatureza}/>
 
             </View>
         </ScrollView>

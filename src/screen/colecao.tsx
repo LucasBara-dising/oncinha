@@ -1,10 +1,10 @@
-// import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Pressable } from 'react-native';
-// import BoxCartasColecao from '../comp/BoxCartasColecao'
-// import ItensLoja from '../types/itensLoja'
-// import User from '../types/User';
-// import axios from 'axios';
-// import {BuscaUser, BuscaColecao} from '../api';
+import BoxCartasColecao from '../comp/BoxCartasColecao'
+import ItensLoja from '../types/itensLoja'
+import User from '../types/User';
+import axios from 'axios';
+import {BuscaUser, BuscaColecao} from '../api';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
 
@@ -15,11 +15,11 @@ type Props = {
   navigation: ColecaoScreenNavigationProp;
 };
 
-const ColecaoScreen: React.FC<Props> = async ({navigation}) =>{
+const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
 
-  // const [itensColacao, setItens] = useState<ItensLoja[]>([])
-  // const [infosUser, setInfos_user] = useState<User>()
-  
+  const [itensColacao, setItens] = useState<ItensLoja[]>([])
+  const [colacao, setColelao] = useState([])
+  const [infosUser, setInfos_user] = useState<User>()
 
     // const colecaoNatureza = [
     //     { id: '1', title: "Macaco Mago", preco: 100, img: require('../imagens/card_macaco.png') },
@@ -31,21 +31,38 @@ const ColecaoScreen: React.FC<Props> = async ({navigation}) =>{
     //   ];
 
 
+    const removeDuplicates = (array: ItensLoja[]) => {
+      const seen = new Set();
+      return array.filter(item => {
+        if (seen.has(item.id)) return false;
+        seen.add(item.id);
+        return true;
+      });
+    };
 
 
-    // useEffect(() => {
-    //   // declare the data fetching function
-    //   const fetchData = async () => {
-    //     //setInfos_user(await BuscaUser())
-    //     setItens(await BuscaColecao())
-    //   }
+    useEffect(() => {
+      // declare the data fetching function
+      const fetchData = async () => {
+        setInfos_user(await BuscaUser())
+        const colecao_bruto : [] = await BuscaColecao()
 
-    //   // call the function
-    //   // fetchData()
-    //   //   .catch(console.error);
-    // }, [])
+        let oi = removeDuplicates(colecao_bruto)
+        
+        console.log(colacao[0])
+        
 
-    //console.log(infosUser?.moedas)
+      console.log(oi);
+
+      //setColelao(oi)
+
+        
+      }
+
+      // call the function
+      fetchData()
+        .catch(console.error);
+    }, [])
 
 
     return ( 
@@ -60,31 +77,26 @@ const ColecaoScreen: React.FC<Props> = async ({navigation}) =>{
                     source={require('../imagens/iconLoja.png')} />
                 </Pressable>
               </View>
-
-              {/* <View style={styles.header}>
-                <Pressable
-                  onPressIn={BuscaColecao}>
-                  <Image 
-                    source={require('../imagens/iconLoja.png')} />
-                </Pressable>
-              </View> */}
                
 
                 <Image 
                     style={styles.bg} 
                     source={require('../imagens/bg-loja.png')} />
 
-                {/* <Text style={styles.moedas}> R$: {infosUser?.moedas}</Text> */}
-
+                <Text style={styles.moedas}> R$: {infosUser?.moedas}</Text>
+ 
                 <Text style={styles.title}>COLEÇÕES</Text>
-{/*                 
-                <BoxCartasColecao
-                    textTitle="Natureza"
-                    itensLoja={itensColacao}/> */}
- {/*
-                <BoxCartasColecao
-                    textTitle="Animais"
-                    itensLoja={colecaoNatureza}/> */}
+      
+          
+
+                {colacao.map((itensColacao) => (
+                
+                 <BoxCartasColecao
+                    textTitle=""
+                    itensLoja={itensColacao}/> 
+
+                    
+                ))}
 
             </View>
         </ScrollView>

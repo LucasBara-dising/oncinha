@@ -1,11 +1,16 @@
 export type ItensLoja = {
   id: number,
-  title: string,
+  nome: string,
+  descricao: string,
+  raridade: string,
+  tipo: string,
   vida: number,
-  mana: number,
+  ataque: number,
   energia: number,
   imagem: any,
-  colecao: string
+  colecao: string,
+  tipo_colecao: string,
+  tem_carta: number
 }
 
 export default ItensLoja;

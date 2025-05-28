@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+// import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Pressable } from 'react-native';
-import BoxCartasColecao from '../comp/BoxCartasColecao'
-import ItensLoja from '../types/itensLoja'
-import User from '../types/User';
-import axios from 'axios';
-import {BuscaUser, BuscaColecao} from '../api';
+// import BoxCartasColecao from '../comp/BoxCartasColecao'
+// import ItensLoja from '../types/itensLoja'
+// import User from '../types/User';
+// import axios from 'axios';
+// import {BuscaUser, BuscaColecao} from '../api';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
 
@@ -17,8 +17,8 @@ type Props = {
 
 const ColecaoScreen: React.FC<Props> = async ({navigation}) =>{
 
-  const [itensColacao, setItens] = useState<ItensLoja[]>([])
-  const [infosUser, setInfos_user] = useState<User>()
+  // const [itensColacao, setItens] = useState<ItensLoja[]>([])
+  // const [infosUser, setInfos_user] = useState<User>()
   
 
     // const colecaoNatureza = [
@@ -61,13 +61,13 @@ const ColecaoScreen: React.FC<Props> = async ({navigation}) =>{
                 </Pressable>
               </View>
 
-              <View style={styles.header}>
+              {/* <View style={styles.header}>
                 <Pressable
                   onPressIn={BuscaColecao}>
                   <Image 
                     source={require('../imagens/iconLoja.png')} />
                 </Pressable>
-              </View>
+              </View> */}
                
 
                 <Image 
@@ -77,10 +77,10 @@ const ColecaoScreen: React.FC<Props> = async ({navigation}) =>{
                 {/* <Text style={styles.moedas}> R$: {infosUser?.moedas}</Text> */}
 
                 <Text style={styles.title}>COLEÇÕES</Text>
-                
+{/*                 
                 <BoxCartasColecao
                     textTitle="Natureza"
-                    itensLoja={itensColacao}/>
+                    itensLoja={itensColacao}/> */}
  {/*
                 <BoxCartasColecao
                     textTitle="Animais"

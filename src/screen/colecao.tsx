@@ -31,32 +31,11 @@ const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
     //   ];
 
 
-    const removeDuplicates = (array: ItensLoja[]) => {
-      const seen = new Set();
-      return array.filter(item => {
-        if (seen.has(item.id)) return false;
-        seen.add(item.id);
-        return true;
-      });
-    };
-
-
     useEffect(() => {
       // declare the data fetching function
       const fetchData = async () => {
         setInfos_user(await BuscaUser())
-        const colecao_bruto : [] = await BuscaColecao()
-
-        let oi = removeDuplicates(colecao_bruto)
-        
-        console.log(colacao[0])
-        
-
-      console.log(oi);
-
-      //setColelao(oi)
-
-        
+        setColelao(await BuscaColecao())
       }
 
       // call the function
@@ -86,16 +65,12 @@ const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
                 <Text style={styles.moedas}> R$: {infosUser?.moedas}</Text>
  
                 <Text style={styles.title}>COLEÇÕES</Text>
-      
-          
 
                 {colacao.map((itensColacao) => (
                 
                  <BoxCartasColecao
                     textTitle=""
                     itensLoja={itensColacao}/> 
-
-                    
                 ))}
 
             </View>

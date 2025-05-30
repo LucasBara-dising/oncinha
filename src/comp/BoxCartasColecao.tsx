@@ -68,7 +68,8 @@ const BoxCartas: React.FC<BtnProps> = ({textTitle, itensLoja}: BtnProps) => {
               <Text style={styles.titleBg}>{cartaAtiva?.colecao}</Text>
             </View>
 
-            <Text style={styles.titleModel}>{cartaAtiva?.tipo}</Text>
+<Text style={styles.titleModel}>{cartaAtiva?.nome}</Text>
+            {/* <Text style={styles.titleModel}>{cartaAtiva?.tipo}</Text> */}
 
             <View style={styles.grid}>
               <Text style={styles.textModel}>Vida</Text>

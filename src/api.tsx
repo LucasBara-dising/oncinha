@@ -45,15 +45,27 @@ async function BuscaUser() {
 
 
   async function BuscaColecao() {
-        try{
-          const response = await axios.get('https://oncinha.ok.etc.br/all_card_user.php?nome_user=jogador01')
-  
-          return (response.data.itens)
-  
-        }catch(error){
-          console.log("ERRO "+ error)
+     let itens = null
+
+    while (!itens) {
+      try {
+        const response = await axios.get('https://oncinha.ok.etc.br/all_card_user.php?nome_user=jogador01')
+        itens = response.data?.itens
+
+        // Se não houver conteúdo, aguarda um tempo e tenta novamente
+        if (!itens || itens.length === 0) {
+          console.log("Nenhum dado encontrado, tentando novamente...")
+          // Aguarda 2 segundos antes de tentar novamente
+          await new Promise(resolve => setTimeout(resolve, 2000))
         }
-        
+      } catch (error) {
+        console.log("Erro ao tentar buscar dados: " + error)
+        // Aguarda 2 segundos antes de tentar novamente
+        await new Promise(resolve => setTimeout(resolve, 2000))
       }
+    }
+    console.log(itens)
+     return itens
+  }
 
 export {BuscaUser, BuscaColecao, Roleta}

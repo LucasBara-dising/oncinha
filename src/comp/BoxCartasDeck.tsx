@@ -2,38 +2,19 @@ import React ,{useState } from 'react';
 import { View, Text, Image, StyleSheet, Modal } from 'react-native';
 import ItensLoja from '../types/itensLoja'
 
-// const cartas = [
-//   { id: '1', title: "Macaco Mago", preco: 100, img: require('../imagens/card_macaco.png') },
-//   { id: '2', title: "Macaco Mago", preco: 200, img: require('../imagens/card_macaco.png') },
-//   { id: '3', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
-//   { id: '4', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png') },
-//   { id: '6', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
-//   { id: '7', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png')}
-
-// ];
-
 
 export type BtnProps = {
-  textTitle: string;
   itensLoja: ItensLoja[]
 };
 
 
 
-const BoxCartas: React.FC<BtnProps> = ({textTitle, itensLoja}: BtnProps) => {
+const BoxCartas: React.FC<BtnProps> = ({itensLoja}: BtnProps) => {
   const [editModalVisible, setModalVisible] = useState(false);
   const [cartaAtiva, setcartaAtiva] = useState<ItensLoja>();
 
   return(
-  <View style={styles.container} >
-    {itensLoja.map((carta) => (
-      <View>
-        {/* set titulo da coleção */}
-        {textTitle = carta.colecao}
-      </View>
-    ))}
-
-    <Text style={styles.title}>{textTitle}</Text>
+  <View  >
 
     <View style={styles.grid}>
 
@@ -94,30 +75,7 @@ const BoxCartas: React.FC<BtnProps> = ({textTitle, itensLoja}: BtnProps) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 10,
-    marginHorizontal: 20,
-    marginBottom: "10%",
-    width:"90%",
-    backgroundColor: '#143020',
-    opacity: 0.9,
-    borderRadius: 20,
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: "#FFCB00"
-  },
-
-  title: {
-    width: '50%',
-    fontSize: 18,
-    color: "#FFCB00",
-    backgroundColor: "#1C7442",
-    padding: '2%',
-    borderRadius: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
+ 
 
   grid: {
     flexDirection: 'row',

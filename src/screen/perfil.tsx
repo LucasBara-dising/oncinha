@@ -5,7 +5,7 @@ import ModelBoxCartasDeck from '../comp/ModelBoxCartasDeck';
 import { BuscaUser, BuscaColecao } from '../api';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
-import ItensLoja from '../types/itensLoja';
+import ItensLoja from '../types/ItensCard';
 import User from '../types/User';
 
 type ColecaoScreenNavigationProp = StackNavigationProp<RootStackParamList, 'PerfilScreen'>;
@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#ffcb00",
     opacity: 0.9,
+    textAlign: 'center',
     paddingVertical: '2%',
     paddingHorizontal: '5%',
     borderRadius: 20,

@@ -1,8 +1,11 @@
-import React, {useState } from 'react';
+import React, {useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Pressable } from 'react-native';
-import BoxCartas from '../comp/BoxCartas'
+import { GetItensLoja, BuscaUser } from '../api';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
+import LojaItens from '../types/LojaItens';
+import User from '../types/User';
+import BoxItensLoja from '../comp/BoxItensLoja'
 
 // Definindo o tipo das props para a navegação
 type ColecaoScreenNavigationProp = StackNavigationProp<RootStackParamList, 'LojaScreen'>;
@@ -11,19 +14,31 @@ type Props = {
   navigation: ColecaoScreenNavigationProp;
 };
 
+type DadosUser ={
+  moedas: number;
+  rodadas: number;
+}
+
 const LojaScreen: React.FC<Props> = ({navigation}) =>{
+    const [ItensLoja, setItensLoja] = useState<LojaItens[]>([])
+    const [ItensLojaRodada, setItensLojaRodada] = useState<LojaItens[]>([])
+    const [ItensLojaCarta, setItensLojaCarta] = useState<LojaItens[]>([])
+    const [InfosUser, setInfos_user] = useState<User>()
+    
+   useEffect(() => {
+      // declare the data fetching function
+      const fetchData = async () => {
+        setInfos_user(await BuscaUser())
+        setItensLoja(await GetItensLoja())
 
-    const itensCards = [
-        { id: '1', title: "Macaco Mago", preco: 100, img: require('../imagens/card_macaco.png') },
-        { id: '2', title: "Macaco Mago", preco: 200, img: require('../imagens/card_macaco.png') },
-        { id: '3', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
-        { id: '4', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png') }
-      ];
+        setItensLojaRodada(ItensLoja.filter((item) => item.tipo == 'Rodada'))
+        setItensLojaCarta(ItensLoja.filter((item) => item.tipo == 'Carta'))
+      }
 
-    const itensMoeda = [
-        { id: '1', title: "Bau Pequeno", preco: 10, img: require('../imagens/card_macaco.png') },
-        { id: '2', title: "Bau Grande", preco: 100, img: require('../imagens/card_macaco.png') }
-      ];
+      // call the function
+      fetchData()
+        .catch(console.error);
+    }, [])
 
     return ( 
         <ScrollView >
@@ -34,21 +49,32 @@ const LojaScreen: React.FC<Props> = ({navigation}) =>{
                         <Image 
                             source={require('../imagens/iconLoja.png')} />
                     </Pressable>
-              </View>
+                </View>
 
                 <Image 
                     style={styles.bg} 
                     source={require('../imagens/bg-loja.png')} />
 
-                <Text style={styles.moedas}> R$: 871.20</Text>
-                
-                {/* <BoxCartas
-                    textTitle="Moedas"
-                    itensLoja={itensMoeda}/>
+                <View style={styles.header_infos_user}>
 
-                <BoxCartas
+                 <Text style={styles.boxTextHeader}>
+                    <Image style={styles.iconBoxTextHeader} source={require('../imagens/moeda.png')} />
+                    {InfosUser?.moedas ? <Text>{InfosUser?.moedas}</Text> : <Text>{InfosUser?.moedas}</Text>}
+                  </Text>
+                  <Text style={styles.boxTextHeader}>
+                    <Image style={styles.iconBoxTextHeader} source={require('../imagens/dados.png')} />
+                    {InfosUser?.rodadas ? <Text>{InfosUser?.rodadas}</Text> : <Text>{InfosUser?.rodadas}</Text>}
+                  </Text>
+                </View> 
+
+
+               <BoxItensLoja
+                    textTitle="Rodadas"
+                    lojaItens ={ItensLojaRodada}/>
+
+                <BoxItensLoja
                     textTitle="Cartas"
-                    itensLoja={itensCards}/> */}
+                    lojaItens={ItensLojaCarta}/>
 
             </View>
         </ScrollView>
@@ -68,7 +94,34 @@ const styles = StyleSheet.create({
         margin: 20,
         paddingHorizontal: 10
       },
+
+       header_infos_user:{
+        width:"100%",
+        alignItems: "center",
+        marginTop: "-15%"
+      },
     
+        boxTextHeader: {
+    width: 150,
+    height: 32,
+    fontSize: 20,
+    color: "#fff",
+    opacity: 0.6,
+    backgroundColor: '#ffcb00',
+    borderRadius: 25,
+    paddingVertical: "1%",
+    marginVertical: 10,
+    textAlignVertical: 'center',
+    textAlign: 'center',
+  },
+
+  iconBoxTextHeader: {
+    width: 24,
+    height: 24,
+    color: "#fff",
+    opacity: 0.7,
+    textAlign: 'center',
+  },
   
     bg:{
           backgroundColor:'#025827',
@@ -86,8 +139,8 @@ const styles = StyleSheet.create({
         opacity: 0.8,
         backgroundColor: '#ffcb00',
         borderRadius:10,
-        marginBottom:'10%',
-        marginTop: '-15%',
+        marginBottom:'5%',
+        marginTop: 10,
         textAlign: 'center'
       },
   

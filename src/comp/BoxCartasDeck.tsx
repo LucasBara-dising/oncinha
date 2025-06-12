@@ -1,6 +1,6 @@
 import React ,{useState } from 'react';
 import { View, Text, Image, StyleSheet, Modal } from 'react-native';
-import ItensLoja from '../types/itensLoja'
+import ItensLoja from '../types/ItensCard'
 
 
 export type BtnProps = {

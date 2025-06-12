@@ -2,7 +2,7 @@
 export type User = {
   nome_usuario:string,
   moedas: number,
-  energia: number,
+  rodadas: number,
   avatar_id: any
 }
 

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Animated, Pressable, StyleSheet, Image } from 'react-native';
-import ItensLoja from '../types/itensLoja'
+import ItensLoja from '../types/ItensCard'
 import { Text } from 'react-native-gesture-handler';
 
 interface CardProps {

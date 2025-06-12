@@ -1,4 +1,4 @@
-export type ItensLoja = {
+export type ItensCard = {
   id: number,
   nome: string,
   descricao: string,
@@ -13,4 +13,4 @@ export type ItensLoja = {
   tem_carta: number
 }
 
-export default ItensLoja;
+export default ItensCard;

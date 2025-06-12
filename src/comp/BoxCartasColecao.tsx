@@ -1,17 +1,6 @@
 import React ,{useState } from 'react';
 import { View, Text, Image, StyleSheet, Modal } from 'react-native';
-import ItensLoja from '../types/itensLoja'
-
-// const cartas = [
-//   { id: '1', title: "Macaco Mago", preco: 100, img: require('../imagens/card_macaco.png') },
-//   { id: '2', title: "Macaco Mago", preco: 200, img: require('../imagens/card_macaco.png') },
-//   { id: '3', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
-//   { id: '4', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png') },
-//   { id: '6', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
-//   { id: '7', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png')}
-
-// ];
-
+import ItensLoja from '../types/ItensCard'
 
 export type BtnProps = {
   textTitle: string;
@@ -20,24 +9,23 @@ export type BtnProps = {
 
 
 
-const BoxCartas: React.FC<BtnProps> = ({textTitle, itensLoja}: BtnProps) => {
+const BoxCartasColecao: React.FC<BtnProps> = ({textTitle, itensLoja}: BtnProps) => {
   const [editModalVisible, setModalVisible] = useState(false);
   const [cartaAtiva, setcartaAtiva] = useState<ItensLoja>();
 
   return(
   <View style={styles.container} >
-    {itensLoja.map((carta) => (
-      <View>
-        {/* set titulo da coleção */}
-        {textTitle = carta.colecao}
-      </View>
+
+    {itensLoja.map((carta, index) => (
+      <Text style={{display:'none'}}>{textTitle = carta.colecao}</Text>
     ))}
+      
 
     <Text style={styles.title}>{textTitle}</Text>
 
     <View style={styles.grid}>
 
-      {itensLoja.map((carta) => (
+      {itensLoja.map((carta, index) => (
         <View key={carta.id}  
               onTouchStart={() => {
                 setModalVisible(true)
@@ -165,7 +153,8 @@ const styles = StyleSheet.create({
 
   imageModel: {
     width: "70%",
-    height: "40%"
+    height: "40%",
+    borderRadius:30
   },
 
   titleModel:{
@@ -219,4 +208,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default BoxCartas;
+export default BoxCartasColecao;

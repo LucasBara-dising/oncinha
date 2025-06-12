@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Pressable } from 'react-native';
 import BoxCartasColecao from '../comp/BoxCartasColecao'
-import ItensLoja from '../types/itensLoja'
+import ItensLoja from '../types/ItensCard'
 import User from '../types/User';
-import axios from 'axios';
 import {BuscaUser, BuscaColecao} from '../api';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
@@ -20,15 +19,6 @@ const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
   const [itensColacao, setItens] = useState<ItensLoja[]>([])
   const [colacao, setColelao] = useState([])
   const [infosUser, setInfos_user] = useState<User>()
-
-    // const colecaoNatureza = [
-    //     { id: '1', title: "Macaco Mago", preco: 100, img: require('../imagens/card_macaco.png') },
-    //     { id: '2', title: "Macaco Mago", preco: 200, img: require('../imagens/card_macaco.png') },
-    //     { id: '3', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') },
-    //     { id: '4', title: "teste4", preco: 400, img: require('../imagens/avatar_teste.png') },
-    //     { id: '5', title: "Macaco Mago", preco: 200, img: require('../imagens/card_macaco.png') },
-    //     { id: '6', title: "teste3", preco: 300, img: require('../imagens/avatar_teste.png') }
-    //   ];
 
 
     useEffect(() => {
@@ -69,7 +59,7 @@ const ColecaoScreen: React.FC<Props> = ({navigation}) =>{
                 {colacao.map((itensColacao) => (
                 
                  <BoxCartasColecao
-                    textTitle=""
+                    textTitle="Carta"
                     itensLoja={itensColacao}/> 
                 ))}
 

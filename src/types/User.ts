@@ -1,9 +1,11 @@
 
 export type User = {
-  nome_usuario:string,
-  moedas: number,
-  rodadas: number,
-  avatar_id: any
-}
+  nome_usuario: any;
+    rodadas: any;
+    moedas: any;
+    energia: any;
+    avatar_id: string;
+} | undefined
+   
 
 export default User;

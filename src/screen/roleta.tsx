@@ -58,6 +58,7 @@ const RoletaScreen: React.FC<Props> = ({ navigation }) => {
     try {
       const dados = await Roleta();
       //Garante que dados sejam preenchidos
+      console.log(dados)
       if (!dados || !dados.resultado) {
         console.error("Dados inválidos");
         return;
@@ -68,6 +69,7 @@ const RoletaScreen: React.FC<Props> = ({ navigation }) => {
       console.log(dados)
       setDetalhes(dados);
       setResultadoRoleta(figuras);
+       setDadosuser({moedas: dados?.moedas, rodadas:  dados?.saldo})
       console.log('Prêmio:', dados.premio);
 
       if(dados.premio != "Sem sequencia"){
@@ -78,6 +80,9 @@ const RoletaScreen: React.FC<Props> = ({ navigation }) => {
     } catch (error) {
       console.error('Erro ao girar a roleta:', error);
     }
+
+    const user = await BuscaUser();
+    setDadosuser({moedas: user?.moedas, rodadas:  user?.rodadas})
   };
 
   useEffect(() => {

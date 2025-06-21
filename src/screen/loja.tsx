@@ -71,8 +71,13 @@ const LojaScreen: React.FC<Props> = ({ navigation }) => {
           </Text>
         </View>
 
+      <Pressable style={styles.containerModel} onTouchStart={async ()=> {
+        setInfosUser( await BuscaUser()) 
+      }}>
         <BoxItensLoja textTitle="Rodadas" lojaItens={itensLojaRodada} />
         <BoxItensLoja textTitle="Cartas" lojaItens={itensLojaCarta} />
+      </Pressable>
+
       </View>
     </ScrollView>
   );
@@ -114,6 +119,7 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     marginRight: 10,
   },
+
   bg: {
     backgroundColor: '#025827',
     height: '100%',
@@ -127,6 +133,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#025827',
+  },
+
+    containerModel: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   loadingText: {
     fontSize: 18,

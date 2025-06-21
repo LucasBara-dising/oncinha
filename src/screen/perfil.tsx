@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Pressable, Modal, FlatList } from 'react-native';
 import BoxCartasDeck from '../comp/BoxCartasDeck';
 import ModelBoxCartasDeck from '../comp/ModelBoxCartasDeck';
-import { BuscaUser, BuscaColecao } from '../api';
+import { BuscaUser, BuscaColecao, SetDeck } from '../api';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
 import ItensLoja from '../types/ItensCard';
@@ -19,8 +19,8 @@ const PerfilScreen: React.FC<Props> = ({ navigation }) => {
   const [itensColacao, setItensColacao] = useState<ItensLoja[]>([]);
   const [itensDeck, setItensDeck] = useState<ItensLoja[]>([]);
   const [editModalVisible, setModalVisible] = useState(false);
-  const [deck, setDeck] = useState([1, 2, 3, 4, 5, 6]);
-  const [infosUser, setInfosUser] = useState<User>();
+  const [deck, setDeck] = useState();
+  const [infosUser, setInfosUser] = useState<User | null>();
   const [cartaAtiva, setCartaAtiva] = useState<number[]>([]);
 
   const toggleCarta = (id: number, temCarta: number) => {
@@ -38,6 +38,8 @@ const PerfilScreen: React.FC<Props> = ({ navigation }) => {
       const colecaoData = await BuscaColecao();
 
       setInfosUser(user);
+      const deck = infosUser?.deck.split(',').map(Number);
+      setDeck(deck)
       const itens = colecaoData.flatMap((obj: any) => obj);
       setItensColacao(itens);
       setItensDeck(itens.filter((item: { id: number }) => deck.includes(item.id)));
@@ -48,6 +50,13 @@ const PerfilScreen: React.FC<Props> = ({ navigation }) => {
 
   // Função para abrir/fechar modal de edição do deck
   const toggleModal = () => setModalVisible(!editModalVisible);
+
+  const changeDeck = () => {
+    const deck_string = cartaAtiva.join(',');
+    console.log(deck_string)
+    SetDeck("jogador01", deck_string);
+    setModalVisible(!editModalVisible);
+  }
 
  return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -74,7 +83,7 @@ const PerfilScreen: React.FC<Props> = ({ navigation }) => {
 
       <Modal visible={editModalVisible} transparent>
         <View style={styles.bgModel}>
-          <Text onPress={toggleModal} style={styles.moedas}>X</Text>
+          <Text onPress={changeDeck} style={styles.moedas}>X</Text>
           <FlatList
             nestedScrollEnabled
             data={itensColacao}

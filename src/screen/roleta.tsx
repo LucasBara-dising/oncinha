@@ -53,6 +53,7 @@ const RoletaScreen: React.FC<Props> = ({ navigation }) => {
   const [detalhes, setDetalhes] = useState<DetalhesRoleta | null>(null);
   const [dadosuser, setDadosuser] = useState<DadosUser | null>(null);
   const [editModalVisible, setModalVisible] = useState(false);
+  const [editModalVisibleHelp, setModalVisibleHelp] = useState(false);
 
   const GiraRoleta = async () => {
     try {
@@ -135,10 +136,39 @@ const RoletaScreen: React.FC<Props> = ({ navigation }) => {
           </Text>
            </View>
 
-        <Pressable onPressIn={() => navigation.navigate('LojaScreen')}>
+        <Pressable onPressIn={() => setModalVisibleHelp(true)
+        }>
           <Image source={require('../imagens/iconLoja.png')} />
         </Pressable>
       </View>
+
+      <Modal visible = {editModalVisibleHelp} 
+          transparent={editModalVisibleHelp} >
+        <View style ={styles.bgModel}onTouchStart={()=>{
+          setModalVisibleHelp(false)
+        }}>
+        <View style={[styles.containerModel, {height: "50%"}]}>
+
+              <Text style={styles.titleModel}>Premios</Text>
+
+              <Text style={styles.textModel}>
+                -Macaco: Nada dessa vez {"\n"}
+                -Onça: Carta Raro{"\n"}
+                -Moedas: 50 Moerdas{"\n"}
+                -Copo espinho: Carta Aleatoria{"\n"}
+                -Boto: Carta Comum{"\n"}
+                -Tesouro: 250 Moedas{"\n"}
+                -Tucano: Mais 5 rodadas{"\n"}
+                -Capivara: Mais 10 rodadas{"\n"}
+                -Arara: Mais 3 rodadas{"\n"}
+                -Espinho: Carta rara{"\n"}
+              </Text>
+
+              <Text style={styles.btnModel}>OK</Text>
+        </View>
+        </View>
+
+      </Modal>
 
       <View style={styles.containerRoleta}>
         <SafeAreaView>

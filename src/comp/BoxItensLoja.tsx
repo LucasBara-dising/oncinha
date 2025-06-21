@@ -47,7 +47,7 @@ const BoxItensLoja: React.FC<BtnProps> = ({ textTitle, lojaItens }: BtnProps) =>
 
       {/* Modal */}
       <Modal visible={editModalVisible} transparent>
-        <View style={styles.bgModel} onTouchStart={handleModalClose}>
+        <View style={styles.bgModel} >
           <View style={styles.containerModel}>
             <Text style={styles.titleModel}>Premio</Text>
             <Text style={styles.textModel}>Comprar: {cartaAtiva?.nome}</Text>
@@ -80,11 +80,12 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   title: {
-    width: '80%',
+    width: '100%',
     fontSize: 18,
     color: "#FFCB00",
     backgroundColor: "#025827",
-    padding: '2%',
+    paddingHorizontal: '20%',
+    paddingVertical: '2%',
     borderRadius: 20,
     marginBottom: 20,
     textAlign: 'center',
@@ -138,6 +139,7 @@ const styles = StyleSheet.create({
     height: "120%",
     backgroundColor: "#000",
     position: "absolute",
+    zIndex: -1,
     opacity: 0.9,
   },
   modelHorizontal: {
@@ -187,6 +189,7 @@ const styles = StyleSheet.create({
     opacity: .8,
     textAlign: 'center',
     fontWeight: 'bold',
+    zIndex: 10
   },
 });
 

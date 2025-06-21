@@ -10,6 +10,25 @@ async function BuscaUser() {
       moedas: data.moedas,
       energia: data.rodadas,
       avatar_id: "oioi", // esse valor está fixo, confirmar se precisa ser dinâmico
+      deck: data.deck,
+    };
+  } catch (error) {
+    console.error("Erro ao buscar usuário:", error);
+    return null;
+  }
+}
+
+async function SetDeck(nome_user: string, deck: string,) {
+  try {
+    const { data } = await axios.get(`https://oncinha.ok.etc.br/set_deck.php?nome_user=${nome_user}&deck=${deck}`);
+
+    return {
+      nome_usuario: data.nome_usuario,
+      rodadas: data.rodadas,
+      moedas: data.moedas,
+      energia: data.rodadas,
+      avatar_id: "oioi", // esse valor está fixo, confirmar se precisa ser dinâmico
+      deck: data.deck,
     };
   } catch (error) {
     console.error("Erro ao buscar usuário:", error);
@@ -94,4 +113,32 @@ async function BuscaColecao() {
   return itens;
 }
 
-export {BuscaUser, BuscaColecao, Roleta, GetItensLoja, EfetuaCompra}
+async function CadastrarUsuario(nome_usuario: string, senha:string, email:string) {
+  try {
+    const response = await axios.post('https://oncinha.ok.etc.br/create_user.php', {
+      nome_usuario: nome_usuario,
+      senha: senha,
+      email: email,
+    });
+
+    // Verifica se a resposta da API indica sucesso
+    if (response.data.status === 'sucesso') {
+      return {
+        mensagem: 'Cadastro realizado com sucesso!',
+        usuarioId: response.data.usuario_id, // Caso a API retorne o ID do usuário
+      };
+    } else {
+      return {
+        mensagem: 'Erro no cadastro: ' + response.data.mensagem,
+      };
+    }
+  } catch (error) {
+    console.error("Erro ao cadastrar usuário:", error);
+    return {
+      mensagem: 'Erro de conexão com a API. Tente novamente.',
+    };
+  }
+}
+
+
+export {BuscaUser, BuscaColecao, Roleta, GetItensLoja, EfetuaCompra, CadastrarUsuario, SetDeck}

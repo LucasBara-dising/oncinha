@@ -2,19 +2,29 @@ import React, {useState } from 'react';
 import {Text, View, StyleSheet, Image, Pressable, TextInput} from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '/home/lucasbara/Documentos/Native/oncinha/App';
+import { CadastrarUsuario } from '../api';
 
 // Definindo o tipo das props para a navegação
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'LoginScreen'>;
+type NavigationProp = StackNavigationProp<RootStackParamList, 'CadastroScreen'>;
 
 type Props = {
-  navigation: LoginScreenNavigationProp;
+  navigation: NavigationProp;
 };
 
 
-const LoginScreen: React.FC<Props> = ({navigation}) =>{
+const CadastroScreen: React.FC<Props> = ({navigation}) =>{
+  const [textUser, setTextUser] = useState('');
+  const [textEmail, setTextEmail] = useState('');
+  const [textSenha, setTextSenha] = useState('');
+  const [textSenhaConf, setTextSenhaConf] = useState('');
 
-    function onButtonClick() {
-      navigation.navigate('HomeScreen')
+    async function onButtonClick() {
+      console.log(textEmail)
+      navigation.navigate('LoginScreen')
+
+      const resultado = await CadastrarUsuario('lucas', 'senha', 'email@example.com');
+      console.log(resultado.mensagem);
+
     }
 
 
@@ -31,28 +41,44 @@ const LoginScreen: React.FC<Props> = ({navigation}) =>{
               source={require('../imagens/icon_onca.png')} />
   
 
-            <Text style={styles.title}>LOGIN</Text>
+            <Text style={styles.title}>Cadastro</Text>
 
             <Text style={styles.titleInput}>USER</Text>
             <TextInput
               style={styles.inputContainer}
+               onChangeText={newText => setTextUser(newText)}
+               value={textUser}
+            />
+
+            <Text style={styles.titleInput}>Email</Text>
+            <TextInput
+              style={styles.inputContainer}
+               onChangeText={newText => setTextEmail(newText)}
+               value={textEmail}
             />
 
             <Text style={styles.titleInput}>SENHA</Text>
             <TextInput
               style={styles.inputContainer}
+               onChangeText={newText => setTextSenha(newText)}
+               value={textSenha}
             />
+
+             <Text style={styles.titleInput}>Confirmar SENHA</Text>
+            <TextInput
+              style={styles.inputContainer}
+               onChangeText={newText => setTextSenhaConf(newText)}
+               value={textSenhaConf}
+            />
+
 
             <Text style={styles.subtitle}>ESQUECEU SUA SENHA?</Text>
 
           <Pressable
             style={styles.buttonContainer} 
             onPressIn={onButtonClick}>
-            <Text style={styles.buttonText}> Entrar</Text>
+            <Text style={styles.buttonText}> CADASTRE-SE</Text>
           </Pressable>
-              
-
-            <Text style={styles.subtitle} onPress={() => navigation.navigate('CadastroScreen')} >CADASTRE-SE</Text>
 
         </View>
 
@@ -73,7 +99,7 @@ const styles = StyleSheet.create({
     },
 
     boxInput:{
-        marginTop: '70%',
+        marginTop: '30%',
         marginLeft: '10%',
         marginRight: '10%',
         padding: "5%",
@@ -142,4 +168,4 @@ const styles = StyleSheet.create({
     
   });
 
-export default LoginScreen;
+export default CadastroScreen;

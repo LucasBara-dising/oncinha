@@ -8,6 +8,7 @@ import PerfilScreen from './src/screen/perfil';
 import LoginScreen from './src/screen/login';
 import RoletaScreen from './src/screen/roleta';
 import CadastroScreen from './src/screen/cadastro';
+import BatalhaScreen from './src/screen/batalha';
 
 // Definindo o tipo das rotas disponíveis
 export type RootStackParamList = {
@@ -18,6 +19,7 @@ export type RootStackParamList = {
   LoginScreen: undefined;
   RoletaScreen: undefined;
   CadastroScreen: undefined;
+  BatalhaScreen: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -36,6 +38,7 @@ const App = () => {
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="RoletaScreen" component={RoletaScreen} />
         <Stack.Screen name="CadastroScreen" component={CadastroScreen} />
+        <Stack.Screen name="BatalhaScreen" component={BatalhaScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

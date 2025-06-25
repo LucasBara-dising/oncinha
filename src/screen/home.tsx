@@ -16,7 +16,7 @@ type Props = {
 
 const HomeScreen: React.FC<Props> = ({navigation}) =>{
 
-  const [infosUser, setInfos_user] = useState<User>()
+  const [infosUser, setInfos_user] = useState<User | null>()
 
     useEffect(() => {
       // declare the data fetching function
@@ -58,7 +58,7 @@ const HomeScreen: React.FC<Props> = ({navigation}) =>{
               />
 
             <BtnIcon
-              onPress={() => navigation.navigate('RoletaScreen')}
+              onPress={() => navigation.navigate('BatalhaScreen')}
               textbtn="Jogo"
               imgBtn ={require('../imagens/iconRoleta.png')}
               />

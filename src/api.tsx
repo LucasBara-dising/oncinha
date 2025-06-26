@@ -69,7 +69,38 @@ async function GetItensLoja() {
   }
 }
 
-// Efetua uma compra
+
+// Função assíncrona para iniciar o jogo
+async function IniciaJogo(nome_user:string, deck: string, deckBot:string) {
+  console.log(nome_user, deck, deckBot)
+  try {
+    // URL da API com parâmetros
+    //const url = `https://oncinha.ok.etc.br/inicia_jogo.php?nome_user=${nome_user}&deck=${deck}&deckBot=${deckBot}`;
+    const url = `https://oncinha.ok.etc.br/inicia_jogo.php?nome_user=jogador01&deck=1,2,3,4,5,6&deck_bot=1,2,3,4,5,6`;
+    
+    // Realizando a requisição GET
+    const { data } = await axios.get(url);
+
+    // Exibindo os dados no console
+    console.log(data);
+
+    // Retornando os dados estruturados como um objeto
+    return {
+      status: data.status,
+      resultado: data.resultado,
+      jogador_id: data.jogador_id,
+      hp_jogador: data.hp_jogador,
+      hp_bot: data.hp_bot,
+      deck_jogador: data.deck_jogador,
+      deck_bot: data.deck_bot,
+    };
+  } catch (error) {
+    // Tratamento de erro
+    console.error("Erro ao iniciar o jogo:",  error);
+    return null;
+  }
+}
+
 async function EfetuaCompra(nome_user: string, id_carta: number, tipo: string) {
   try {
     const url = `https://oncinha.ok.etc.br/efetua_compra.php?nome_user=${nome_user}&id_card=${id_carta}&tipo=${tipo}`;
@@ -140,5 +171,26 @@ async function CadastrarUsuario(nome_usuario: string, senha:string, email:string
   }
 }
 
+//  const handlePostRequest = async () => {
+//     try {
+//       const data = { nome_user, deck, deck_bot, carta, carta_bot, vida_user,energia_user,vida_bot,energia_bot };
 
-export {BuscaUser, BuscaColecao, Roleta, GetItensLoja, EfetuaCompra, CadastrarUsuario, SetDeck}
+//       const res = await fetch('https://oncinha.ok.etc.br/teste.php', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(data), // Converte o objeto para JSON
+//       });
+
+//       const result = await res.json(); // Converte a resposta para JSON
+//       setResponse(result); // Armazena a resposta
+//       console.log(response)
+//     } catch (error) {
+//       console.error('Erro na requisição:', error);
+//       //setResponse({ status: 'error', mensagem: 'Ocorreu um erro na requisição.' });
+//     }
+//   };
+
+
+export {BuscaUser, BuscaColecao, Roleta, GetItensLoja, EfetuaCompra, CadastrarUsuario, SetDeck, IniciaJogo}

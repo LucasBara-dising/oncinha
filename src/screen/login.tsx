@@ -12,6 +12,31 @@ type Props = {
 
 
 const LoginScreen: React.FC<Props> = ({navigation}) =>{
+    const [nome, setNome] = useState('');
+  const [idade, setIdade] = useState('');
+  const [response, setResponse] = useState(null);
+
+  const handlePostRequest = async () => {
+    try {
+      const data = { nome, idade };
+
+      const res = await fetch('https://oncinha.ok.etc.br/teste.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data), // Converte o objeto para JSON
+      });
+
+      const result = await res.json(); // Converte a resposta para JSON
+      setResponse(result); // Armazena a resposta
+      console.log(response)
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+      //setResponse({ status: 'error', mensagem: 'Ocorreu um erro na requisição.' });
+    }
+  };
+
 
     function onButtonClick() {
       navigation.navigate('HomeScreen')

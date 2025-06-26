@@ -43,6 +43,8 @@ const PerfilScreen: React.FC<Props> = ({ navigation }) => {
       const itens = colecaoData.flatMap((obj: any) => obj);
       setItensColacao(itens);
       setItensDeck(itens.filter((item: { id: number }) => deck.includes(item.id)));
+
+      console.log(itensDeck)
     };
 
     fetchData().catch(console.error);

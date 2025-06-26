@@ -14,7 +14,7 @@ const BoxCartasDeckBatalha: React.FC<BtnProps> = ({itensLoja}: BtnProps) => {
   return(
   <View  >
 
-    <View style={styles.grid}>
+    <View style={styles.gridCard}>
 
       {itensLoja.map((carta) => (
         <View key={carta.id}  
@@ -23,8 +23,22 @@ const BoxCartasDeckBatalha: React.FC<BtnProps> = ({itensLoja}: BtnProps) => {
                 setcartaAtiva(carta)
               }
              }
-            style={[styles.card, carta.tem_carta == 1 ? { filter: 'grayscale(0%)' } : { filter: 'grayscale(100%)' }]}>
+            style={[styles.card, carta.vida > 0 ? { filter: 'grayscale(0%)' } : { filter: 'grayscale(100%)' }]}>
           <Image source={{uri: carta.imagem}} style={styles.image} />
+          <View style={styles.grid}>
+                        <Text style={styles.textModel}>Vida</Text>
+                        <Text style={styles.textModel_alingRigth}>{carta?.vida}</Text>
+                      </View>
+          
+                      <View style={styles.grid}>
+                        <Text style={styles.textModel}>Energia</Text>
+                        <Text style={styles.textModel_alingRigth}>{carta?.energia}</Text>
+                      </View>
+          
+                      <View style={styles.grid}>
+                        <Text style={styles.textModel}>Ataque</Text>
+                        <Text style={styles.textModel_alingRigth}>{carta?.ataque}</Text>
+                      </View>
 
           
         </View>
@@ -39,24 +53,52 @@ const BoxCartasDeckBatalha: React.FC<BtnProps> = ({itensLoja}: BtnProps) => {
 const styles = StyleSheet.create({
  
 
-  grid: {
+  gridCard: {
     flexDirection: 'row',
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    padding: 15
+  },
+
+   grid: {
+    flexDirection: 'row',
+    flexWrap: "wrap",
+    paddingHorizontal: 15
   },
 
   card: {
-    width: "27%",
+    width: "32%",
     height: 'auto',
-    margin: 10,
+    marginVertical: 10,
     borderRadius: 12,
     alignItems: 'center',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
 
   image: {
-    width: 90,
-    height: 120,
+    width: 80,
+    height: 100,
     resizeMode: 'cover',
+  },
+   textModel:{
+    width: '50%',
+    fontSize: 12,
+    color: "#FFCB00",
+    opacity: 0.9,
+    marginTop: "2%",
+    borderRadius: 20,
+    textAlign: 'left',
+    fontWeight: 'bold',
+  },
+
+  textModel_alingRigth:{
+    width: '50%',
+    fontSize: 12,
+    color: "#FFCB00",
+    opacity: 0.9,
+    marginTop: "2%",
+    borderRadius: 20,
+    textAlign: 'right',
+    fontWeight: 'bold',
   }
 });
 

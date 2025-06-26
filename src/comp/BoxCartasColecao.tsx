@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, Modal, TouchableOpacity } from 'react-na
 import ItensLoja from '../types/ItensCard';
 
 export type BtnProps = {
-  textTitle: string;
+  textTitle: string| undefined;
   itensLoja: ItensLoja[];
 };
 
@@ -23,7 +23,11 @@ const BoxCartasColecao: React.FC<BtnProps> = ({ textTitle, itensLoja }: BtnProps
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{textTitle}</Text>
+       {itensLoja.map((carta) => (
+      <Text style={styles.fantasma}>{textTitle=carta?.colecao}</Text>
+       ))}
+
+       <Text style={styles.title}>{textTitle}</Text>
 
       <View style={styles.grid}>
         {itensLoja.map((carta) => (
@@ -145,6 +149,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     opacity: 1,
+  },
+
+  fantasma:{
+    display: "none"
   },
 
   imageModel: {

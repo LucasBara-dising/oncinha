@@ -28,7 +28,6 @@ const LojaScreen: React.FC<Props> = ({ navigation }) => {
         
         setInfosUser(userData);
         setItensLoja(lojaItensData);
-
         // Filtrando os itens após o carregamento
         setItensLojaRodada(lojaItensData.filter((item: { tipo: string; }) => item.tipo === 'Rodada'));
         setItensLojaCarta(lojaItensData.filter((item: { tipo: string; }) => item.tipo === 'Carta'));

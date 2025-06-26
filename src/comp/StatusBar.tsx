@@ -33,7 +33,7 @@ const StatusBar : React.FC<Props> = ({ iconName, iconColor, value, percentage, b
 // Estilos externos para melhor organização
 const styles = StyleSheet.create({
   statusBarContainer: {
-    height: 25,
+    height: 20,
     borderRadius: 15,
     marginVertical: 5,
     backgroundColor: '#ddd', // Cor de fundo (trilha)
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   statusText: {
     color: '#FFFFFF',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 12,
     marginLeft: 8,
   },
 });

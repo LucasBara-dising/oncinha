@@ -1,97 +1,43 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🃏 Oncinha Card Battle App
 
-# Getting Started
+Um aplicativo mobile desenvolvido com **React Native** que combina **batalhas estratégicas com cartas**, uma **slot machine** interativa, uma **loja de itens/cartas** e uma **coleção personalizada de cartas**. Ideal para fãs de jogos de cartas colecionáveis com uma pitada de sorte!
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 📱 Funcionalidades
 
-## Step 1: Start Metro
+### ⚔️ Batalha
+- Enfrente adversários e Bots em tempo real.
+- Use suas cartas estrategicamente com diferentes atributos e efeitos.
+- Sistema de turnos com mecânicas de ataque, defesa e mana.
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### 🎰 Slot Machine
+- Gire a slot machine diariamente para ganhar recompensas exclusivas.
+- Itens, moedas, boosters e até cartas raras podem ser obtidos.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### 🛒 Loja
+- Compre pacotes de cartas, moedas e itens especiais.
+- Suporte a diferentes tipos de moedas (moeda do jogo e moedas premium).
+- Interface intuitiva com previews dos produtos.
 
-```sh
-# Using npm
-npm start
+### 🃏 Coleção de Cartas
+- Visualize todas as cartas obtidas em uma galeria interativa.
+- Filtros por raridade, tipo, atributo e mais.
+- Detalhes completos de cada carta: nome, tipo, poder, habilidades especiais.
+- Monte de Deck de batalha
 
-# OR using Yarn
-yarn start
-```
+---
 
-## Step 2: Build and run your app
+## 🚀 Tecnologias Utilizadas
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+- **React Native** (Expo ou CLI)
+- **React Navigation** para navegação entre telas
+- **Axios** para chamadas de API
 
-### Android
+---
 
-```sh
-# Using npm
-npm run android
+## 📱 Capturas de Tela!
 
-# OR using Yarn
-yarn android
-```
+[![IMAGE ALT TEXT HERE](https://github.com/user-attachments/assets/4b88875b-6b85-475d-b94c-4debb6f64e56)](https://youtube.com/shorts/w5vktQr8TiY?feature=share)
 
-### iOS
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## 🧱  Projeto
+  Feito por [Lucas Bara](https://www.linkedin.com/in/lucas-barauna-386113241/) com :heart: e React Native.
